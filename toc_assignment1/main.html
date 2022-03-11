@@ -73,8 +73,10 @@
                 <tr>
                     <td class="yellowCell">FINAL</td>
                     <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
+                        onchange="this.value=this.value.toUpperCase()" id = "finalState" required></td>    <!--new-->
+                <!--    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
                         onchange="this.value=this.value.toUpperCase();document.getElementById('50').innerHTML=this.value;" 
-                        id = "finalState" required></td>
+                        id = "finalState" required></td> -->
                     <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange="" required></td>
                     <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange="" required></td>
                     <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange=""  required></td>
@@ -145,17 +147,16 @@
         
  
     <table id =" checkTable"  >
-       
-<tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="1" ></td>
-    <td id="2" width="30px"></td></tr>
-<tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="3"></td>
-    <td id="4"></td></tr>
-<tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="5"></td>
-    <td id="6"></td></tr>
-<tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="7"></td>
-    <td id="8"></td></tr>
-<tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="9"></td>
-    <td id="ten"></td></tr>
+        <tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="1" ></td>
+            <td id="2" width="30px"></td></tr>
+        <tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="3"></td>
+            <td id="4"></td></tr>
+        <tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="5"></td>
+            <td id="6"></td></tr>
+        <tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="7"></td>
+            <td id="8"></td></tr>
+        <tr><td><input pattern="[a-zA-Z]*"  type="text" name="a" style="width: 80px;" id="9"></td>
+            <td id="ten"></td></tr>
     </table>
       <input type="button" value="check" onclick="getDataFromCheckTable();"/>  
 
