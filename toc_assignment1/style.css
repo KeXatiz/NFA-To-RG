@@ -74,10 +74,10 @@ background-color: gray;
 
   
 
-  .caption{
+  /*.caption{
     margin-bottom: 5px;
     font: 20px Arial;
-  }
+  }*/                               /* == can delete as we didnt use it ==*/
 
   .v{
     text-align: center;
