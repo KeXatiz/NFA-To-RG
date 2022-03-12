@@ -39,6 +39,7 @@
         <h3>NFA to RG</h3>
 
         <table>
+            <caption><b>NFA (input)</b><br>(First box of Q must be the start state) </caption>
             <tr>
                 <td class="yellowCell">&sum;</td>   <!-- E -->
                 <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
@@ -60,36 +61,37 @@
                 <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
                     onchange="this.value=this.value.toUpperCase();document.getElementById('40').innerHTML=this.value;" required></td>
                 <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
-                    onchange="this.value=this.value.toUpperCase();document.getElementById('50').innerHTML=this.value;" required></td></tr>
+                    onchange="this.value=this.value.toUpperCase();document.getElementById('50').innerHTML=this.value;" required></td>
+            </tr>
         
            
-                <tr>
-                    <td class="yellowCell">START</td>
-                    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
-                        onchange="this.value=this.value.toUpperCase();document.getElementById('10').innerHTML=this.value;" 
-                        id="startState" required></td>
-                </tr>
-
-                <tr>
-                    <td class="yellowCell">FINAL</td>
-                    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
-                        onchange="this.value=this.value.toUpperCase()" id = "finalState" required></td>    <!--new-->
-                <!--    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
-                        onchange="this.value=this.value.toUpperCase();document.getElementById('50').innerHTML=this.value;" 
-                        id = "finalState" required></td> -->
-                    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange="" required></td>
-                    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange="" required></td>
-                    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange=""  required></td>
-                    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange="" required></td>
-                </tr>
-           
+            <tr>
+                <td class="yellowCell">START</td>
+                <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
+                    onchange="this.value=this.value.toUpperCase();document.getElementById('10').innerHTML=this.value;" 
+                    id="startState" required></td>
             </tr>
+
+            <tr>
+                <td class="yellowCell">FINAL</td>
+                <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
+                    onchange="this.value=this.value.toUpperCase()" id = "finalState" required></td>    <!-- == maybe we can do finalState1, finalState2, ... ==  -->
+            <!--    <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" 
+                    onchange="this.value=this.value.toUpperCase();document.getElementById('50').innerHTML=this.value;" 
+                    id = "finalState" required></td> -->
+                <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange="" required></td>
+                <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange="" required></td>
+                <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange=""  required></td>
+                <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;" onchange="" required></td>
+            </tr>
+
         </table>
+        <br><br>
 
-        <input type="button" value="generate transition table" onclick="generateTransitionTable();"/> 
+        <!--<input type="button" value="generate transition table" onclick="generateTransitionTable();"/> -->  <!--we can remove this and js for generateTransitionTable-->
 
-            <table id="nfaTable" cellpadding="10%" style="display: none;">
-                <caption class="caption">Transition Table<p>(Leave the boxes empty having no transitions)</p> </caption>
+            <table id="nfaTable" cellpadding="10%" style="display: block;">
+                <caption><b>Transition Table</b><br>(blank for &empty;) </caption>
 
 
                 <tr>

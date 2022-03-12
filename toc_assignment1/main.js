@@ -1,14 +1,14 @@
 /*var counter=1; */
 var transitions;
 
-var q=1;
+//var q=1;
 
-function generateTransitionTable(){
+/*function generateTransitionTable(){
 
     //alert("generate transition table");
    // document.getElementById("transitionTable").style="display:block;";
    document.getElementById("nfaTable").style="display:block;";
-}
+}  */ /* == CAN DELETE THIS as we dont use it anymore == */
 
 function getState(currentState, input){
 var nextState="Q";
@@ -96,7 +96,7 @@ function getDataFromCheckTable(){
         [document.getElementById("30").innerHTML.toUpperCase(),document.getElementById("31").value.toUpperCase(), document.getElementById("32").value.toUpperCase(),document.getElementById("33").value.toUpperCase(),document.getElementById("34").value.toUpperCase()],
         [document.getElementById("40").innerHTML.toUpperCase(),document.getElementById("41").value.toUpperCase(), document.getElementById("42").value.toUpperCase(),document.getElementById("43").value.toUpperCase(),document.getElementById("44").value.toUpperCase()],
         [document.getElementById("50").innerHTML.toUpperCase(), document.getElementById("51").value.toUpperCase(), document.getElementById("52").value.toUpperCase(),document.getElementById("53").value.toUpperCase(),document.getElementById("54").value.toUpperCase()]
-      ];    /* ==This is link with checkvalidexpression == */
+      ];    /* ==This is link with checkvalidexpression AND placement of the matrix== */
 
 
     //alert(exp1);
@@ -170,17 +170,17 @@ function toRg(tableID){
     var oTable = document.getElementById(tableID);
 
     //gets rows of table.
-    var rowLength = oTable.rows.length;
+    var rowLength = oTable.rows.length;                             /* == Calculate number of row == */ /*eg 6*/  //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_rows
 
     //loops through rows    
-    for (i = 1; i < rowLength; i++){
+    for (i = 1; i < rowLength; i++){                                /* == start with one because 1 is a b epsilon== */ /*eg 1<5*/
 
         tmp="";
         //gets cells of current row
         // var oCells = oTable.rows.item(i).cells;
 
         var index="";
-        index=index+i;
+        index=index+i;                                              /*1st loop index= */
         index=index+"0";
     
         var state=document.getElementById(index).innerHTML.toUpperCase();
