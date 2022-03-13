@@ -1,12 +1,12 @@
 # NFA-To-RG
-Theory of Computation Assignment. 
-NFA to RG Converter
-
-Things to do:
-Main Page, Styling    ❌ - Engku
-NFA (Input)           ✅ - Fekry / Amir
-Transition Table      ✅ - Fekry
-Check Strings (Input) ❌ - Ooi Yi Xuin
-Regular Grammars      ✅ - Amir
-Help + Doc Page       ❌ - Engku
-Styling               ❌ - Engku
+Theory of Computation Assignment. <br>
+NFA to RG Converter <br>
+<br>
+Things to do: <br><br>
+Main Page, Styling    ❌ - Engku  <br>
+NFA (Input)           ✅ - Fekry / Amir <br>
+Transition Table      ✅ - Fekry <br>
+Check Strings (Input) ❌ - Ooi Yi Xuin <br>
+Regular Grammars      ✅ - Amir <br>
+Help + Doc Page       ❌ - Engku <br>
+Styling               ❌ - Engku <br>
