@@ -3,7 +3,6 @@ Theory of Computation Assignment.
 NFA to RG Converter
 
 Things to do:
-
 Main Page, Styling    ❌ - Engku
 NFA (Input)           ✅ - Fekry / Amir
 Transition Table      ✅ - Fekry
