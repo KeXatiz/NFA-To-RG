@@ -1,458 +1,226 @@
-/*var counter=1; */
-var transitions;
-
-//var q=1;
-
-/*function generateTransitionTable(){
-
-    //alert("generate transition table");
-   // document.getElementById("transitionTable").style="display:block;";
-   document.getElementById("nfaTable").style="display:block;";
-}  */ /* == CAN DELETE THIS as we dont use it anymore == */
-
-function getState(currentState, input){
-var nextState="Q";
-
-    for (i=1; i<5; i++){
-
-        //alert("transitions["+i+"][0]"+transitions[i][0]);
-      
-        if(transitions[i][0]==currentState){
-            if(transitions[0][0]==input){
-                nextState= transitions[i][0];
-            }
-            else if(transitions[0][1]==input){
-                nextState= transitions[i][1];
-            }
-            else if(transitions[0][2]==input){
-                nextState= transitions[i][2];
-            }
-            else if(transitions[0][3]==input){
-                nextState= transitions[i][3];
-            }
-            else{
-
-                alert("no such input");
-                return "fail";
-            }
-        }
-        else{
-            return "fail";
-        }
-        return nextState;
-    }
-    
+//Function to generate transition table
+function generateTransitionTable() {
+    document.getElementById("nfaTable").style = "display:block;";
+    StartFinalSymbol();
 }
 
-function checkValidExpression(exp){
-
-    var letter="";
-    var currentState=document.getElementById("startState").value;
-
-    
-    var finalState = document.getElementById("finalState").value.toUpperCase();
-  
-
-    if(exp=="") { return false;}
-
-    for (i=0; i<exp.length; i++){
-        letter = exp.charAt(i);
-        
-     
-        var x = getState(currentState,letter);
-        if (x==finalState){
-            return true;
-        }
-        if(x =="fail"){
-            return false;
-        }
-        else{
-            currentState=x;
-        }
+//Function to display symbol
+function symboltrue(value, type) {
+    if (type == 'f') { //Display final symbol
+        document.getElementById("finalsymbol" + value).innerHTML = "*";
+        return;
     }
-        
-    if(currentState==finalState){
-        return true;
+    if (type == 's') { //Display start symbol
+        document.getElementById("startsymbol" + value).innerHTML = ">";
+        return;
     }
-
-    // alert(exp);
-        
 
 }
 
-function getDataFromCheckTable(){
-
-    var exp1 = document.getElementById("1").value;
-    var exp2 = document.getElementById("3").value;
-    var exp3 = document.getElementById("5").value;
-    var exp4 = document.getElementById("7").value;
-    var exp5 = document.getElementById("9").value;
- 
-
-    transitions = [
-        ["Null",document.getElementById("00").innerHTML.toString(), document.getElementById("01").innerHTML.toString(), document.getElementById("02").innerHTML.toString(),document.getElementById("03").innerHTML.toString(),"Null"],
-        [document.getElementById("10").innerHTML.toUpperCase(), document.getElementById("11").value.toUpperCase(), document.getElementById("12").value.toUpperCase(),document.getElementById("13").value.toUpperCase(),document.getElementById("14").value.toUpperCase()],
-        [document.getElementById("20").innerHTML.toUpperCase(), document.getElementById("21").value.toUpperCase(), document.getElementById("22").value.toUpperCase(),document.getElementById("23").value.toUpperCase(),document.getElementById("24").value.toUpperCase()],
-        [document.getElementById("30").innerHTML.toUpperCase(),document.getElementById("31").value.toUpperCase(), document.getElementById("32").value.toUpperCase(),document.getElementById("33").value.toUpperCase(),document.getElementById("34").value.toUpperCase()],
-        [document.getElementById("40").innerHTML.toUpperCase(),document.getElementById("41").value.toUpperCase(), document.getElementById("42").value.toUpperCase(),document.getElementById("43").value.toUpperCase(),document.getElementById("44").value.toUpperCase()],
-        [document.getElementById("50").innerHTML.toUpperCase(), document.getElementById("51").value.toUpperCase(), document.getElementById("52").value.toUpperCase(),document.getElementById("53").value.toUpperCase(),document.getElementById("54").value.toUpperCase()]
-      ];    /* ==This is link with checkvalidexpression AND placement of the matrix== */
-
-
-    //alert(exp1);
-    //alert(getState("A",exp1));
-
-    if(checkValidExpression(exp1)){
-        document.getElementById("2").innerHTML="ok";
+//Function to reset symbol to nothing
+function symbolfalse(value, type) {
+    if (type == 'f') { //Reset final symbol
+        document.getElementById("finalsymbol" + value).innerHTML = "";
+        return;
     }
-    else{
-        document.getElementById("2").innerHTML="not";
+    if (type == 's') { //Reset start symbol
+        document.getElementById("startsymbol" + value).innerHTML = "";
+        return;
     }
 
-
-    if(checkValidExpression(exp2)){
-        document.getElementById("4").innerHTML="ok"; 
-    }
-    else{
-        document.getElementById("4").innerHTML="not";
-    }
-
-
-    if(checkValidExpression(exp3)){
-        document.getElementById("6").innerHTML="ok";
-    }
-    else{
-        document.getElementById("6").innerHTML="not";
-        
-
-    }
-    if(checkValidExpression(exp4)){
-        document.getElementById("8").innerHTML="ok";
-    }
-    else{
-        document.getElementById("8").innerHTML="not";
-    }
-
-
-    if(checkValidExpression(exp5)){
-        document.getElementById("ten").innerHTML="ok";
-    }
-    else{
-        document.getElementById("ten").innerHTML="not";
-    }
-    
 }
 
-function openTabs(evt, tabName){
-    
-    var i, tabContent, tablinks;
+function StartFinalSymbol() {
+    //Call DisplayTableVariable function
+    DisplayTableVariable();
 
-    tabContent = document.getElementsByClassName("tabContent");
-    for(i=0; i<tabContent.length; i++){
-        tabContent[i].style.display = "none";
+    //Initialize Variables
+    var State10 = document.getElementById('State10').value;
+    var State20 = document.getElementById('State20').value;
+    var State30 = document.getElementById('State30').value;
+    var State40 = document.getElementById('State40').value;
+    var State50 = document.getElementById('State50').value;
+    var FinalState10 = document.getElementById('FinalState10').value;
+    var FinalState20 = document.getElementById('FinalState20').value;
+    var FinalState30 = document.getElementById('FinalState30').value;
+    var FinalState40 = document.getElementById('FinalState40').value;
+    var FinalState50 = document.getElementById('FinalState50').value;
+    var StartState = document.getElementById('StartState').value;
+
+    if (State10) { //Check if State10 empty or not
+        if (State10.localeCompare(FinalState10) == 0 || State10.localeCompare(FinalState20) == 0 || State10.localeCompare(FinalState30) == 0 || State10.localeCompare(FinalState40) == 0 || State10.localeCompare(FinalState50) == 0) {
+            symboltrue(10, 'f'); // Send value, and 'Final' type
+        } else {
+            symbolfalse(10, 'f'); // Send value, and 'Final' type
+        }
+
+        if (State10.localeCompare(StartState) == 0) {
+            symboltrue(10, 's'); // Send value, and 'Start' type
+        } else {
+            symbolfalse(10, 's'); // Send value, and 'Start' type
+        }
     }
 
-    tablinks = document.getElementsByClassName("tablinks");
-    for(i=0; i<tablinks.length; i++){
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    if (State20) { //Check if State20 empty or not
+        if (State20.localeCompare(FinalState10) == 0 || State20.localeCompare(FinalState20) == 0 || State20.localeCompare(FinalState30) == 0 || State20.localeCompare(FinalState40) == 0 || State20.localeCompare(FinalState50) == 0) {
+            symboltrue(20, 'f'); // Send value, and 'Final' type
+        } else {
+            symbolfalse(20, 'f'); // Send value, and 'Final' type
+        }
+
+        if (State20.localeCompare(StartState) == 0) {
+            symboltrue(20, 's'); // Send value, and 'Start' type
+        } else {
+            symbolfalse(20, 's'); // Send value, and 'Start' type
+        }
     }
 
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    if (State30) { //Check if State30 empty or not
+        if (State30.localeCompare(FinalState10) == 0 || State30.localeCompare(FinalState20) == 0 || State30.localeCompare(FinalState30) == 0 || State30.localeCompare(FinalState40) == 0 || State30.localeCompare(FinalState50) == 0) {
+            symboltrue(30, 'f'); // Send value, and 'Final' type
+        } else {
+            symbolfalse(30, 'f'); // Send value, and 'Final' type
+        }
+
+        if (State30.localeCompare(StartState) == 0) {
+            symboltrue(30, 's'); // Send value, and 'Start' type
+        } else {
+            symbolfalse(30, 's'); // Send value, and 'Start' type
+        }
+    }
+
+    if (State40) { //Check if State40 empty or not
+        if (State40.localeCompare(FinalState10) == 0 || State40.localeCompare(FinalState20) == 0 || State40.localeCompare(FinalState30) == 0 || State40.localeCompare(FinalState40) == 0 || State40.localeCompare(FinalState50) == 0) {
+            symboltrue(40, 'f'); // Send value, and 'Final' type
+        } else {
+            symbolfalse(40, 'f'); // Send value, and 'Final' type
+        }
+
+        if (State40.localeCompare(StartState) == 0) {
+            symboltrue(40, 's'); // Send value, and 'Start' type
+        } else {
+            symbolfalse(40, 's'); // Send value, and 'Start' type
+        }
+    }
+
+    if (State50) { //Check if State50 empty or not
+        if (State50.localeCompare(FinalState10) == 0 || State50.localeCompare(FinalState20) == 0 || State50.localeCompare(FinalState30) == 0 || State50.localeCompare(FinalState40) == 0 || State50.localeCompare(FinalState50) == 0) {
+            symboltrue(50, 'f'); // Send value, and 'Final' type
+        } else {
+            symbolfalse(50, 'f'); // Send value, and 'Final' type
+        }
+
+        if (State50.localeCompare(StartState) == 0) {
+            symboltrue(50, 's'); // Send value, and 'Start' type
+        } else {
+            symbolfalse(50, 's'); // Send value, and 'Start' type
+        }
+    }
+
 }
 
-document.getElementById("defaultOpen").click()
+function DisplayTableVariable() {
+    //Initiliaze Variables
+    var State10 = document.getElementById('State10').value;
+    var State20 = document.getElementById('State20').value;
+    var State30 = document.getElementById('State30').value;
+    var State40 = document.getElementById('State40').value;
+    var State50 = document.getElementById('State50').value;
+
+    //Display States into transition table
+    document.getElementById("State10Table").innerHTML = State10;
+    document.getElementById("State20Table").innerHTML = State20;
+    document.getElementById("State30Table").innerHTML = State30;
+    document.getElementById("State40Table").innerHTML = State40;
+    document.getElementById("State50Table").innerHTML = State50;
+}
 
 function toRg(tableID){
     var rg="";
-    var tmp;
+    var subRG;
+    var arrowState;
     //gets table
-    var oTable = document.getElementById(tableID);
+    var transTable = document.getElementById(tableID);
 
     //gets rows of table.
-    var rowLength = oTable.rows.length;                             /* == Calculate number of row == */ /*eg 6*/  //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_rows
+    var rowLength = transTable.rows.length;                                 /* == Calculate number of row == */ /*eg 6*/  //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_rows
 
     //loops through rows    
-    for (i = 1; i < rowLength; i++){                                /* == start with one because 1 is a b epsilon== */ /*eg 1<5*/
+    for (i = 1; i < rowLength; i++){                                    /* == start with one because 1 is a b epsilon== */ /*eg 1<6*/
+        var index="";                                                   /*to set variable to char/string state */
+        index="State"+i+"0Table";                                                    /*1st loop index= 10 ; 20; 30; 40; 50 */
+        //alert(index);
+        var state=document.getElementById(index).innerHTML.toUpperCase();    /*  getElementById(10)= A  ; getElementById(20)= R  getElementById(30)= S;  getElementById(40)= T    it take from html*/
+        //alert(document.getElementById(index).innerHTML);
+        arrowState="";
+        arrowState=state+"&rarr;";                                             /*tmp=A-> ; R->; S->; T->; ->;   looping*/
 
-        tmp="";
-        //gets cells of current row
-        // var oCells = oTable.rows.item(i).cells;
+        // first column 
+        var index="";                                                   /* Overite the previous*/
+        index=i+"1";                                                   /* =11; =21; =31; =41; =51; */
+        
+        var txt =document.getElementById(index).value.toUpperCase();    /* getElementById(11)=R; getElementById(21)=S; getElementById(31)=""; getElementById(41)="";  getElementById(51)="";*/
+        if(txt!=""){                                                    /*NOT empty, have vaalue*/  //so 11 and 21 have value of R and S 
 
+            index="";                                                   /*Overite*/
+            index=i+"1";                                                /*11; 21;   looping*/
+
+            subRG=arrowState+document.getElementById("Sigma00").innerHTML+txt;        /*A->aR;   R->aS;   looping*/
+            
+            rg=rg+subRG+"<br>";                                           /*A->aR<br>; A->aR<br>R->aS<br>;   */    //CHECK AGAIN 
+        }
+
+        
+        // second column
         var index="";
-        index=index+i;                                              /*1st loop index= */
-        index=index+"0";
-    
-        var state=document.getElementById(index).innerHTML.toUpperCase();
-    
-        // alert(txt);
-    
-        tmp=tmp+state;
-        tmp=tmp+"&rarr;";
+        index=i+"2";                                                    /* 12; 22; 32; 42; 52 */
 
-        var index="";
-        index=index+i;
-        index=index+"1";
-    
-        // first column
-    
-        var txt =document.getElementById(index).value.toUpperCase();
-    
+        var txt =document.getElementById(index).value.toUpperCase();    /* getElementById(12)=""; getElementById(22)=R; getElementById(32)=T; getElementById(42)="";  getElementById(52)="";*/
         if(txt!=""){
 
             index="";
-            index=index+i;
-            index=index+"1";
+            index=i+"2";                                                //22; 23
 
-
-            tmp=tmp+document.getElementById("00").innerHTML;
-
-            tmp=tmp+txt;
+            subRG=arrowState+document.getElementById("Sigma01").innerHTML+txt;
+            
+            rg=rg+subRG+"<br>";
+        }
         
-            rg=rg+tmp+"<br>";
-        }
 
-        tmp="";
-
-
-        /////////////////////////////////////////////
-        tmp=tmp+state;
-        tmp=tmp+"&rarr;"; 
-
+        //third column
         var index="";
-        index=index+i;
-        index=index+"2";
-
-
-        var txt =document.getElementById(index).value.toUpperCase();
-        if(txt!=""){
-
-        index="";
-        index=index+i;
-        index=index+"2";
-
-        tmp=tmp+document.getElementById("01").innerHTML;
-        tmp=tmp+txt;
-        rg=rg+tmp+"<br>";
-        }
-    
-        tmp="";
-        tmp=tmp+state;
-        tmp=tmp+"&rarr;"; 
-
-        var index="";
-        index=index+i;
-        index=index+"3";
+        index=i+"3";
 
         var txt = document.getElementById(index).value.toUpperCase();
-            if(txt!=""){
+        if(txt!=""){
 
-                index="";
-                index=index+i;
-                index=index+"3";
+            index="";
+            index=i+"3"; 
 
 
-                tmp=tmp+document.getElementById("02").innerHTML;
-                tmp=tmp+txt;
-                rg=rg+tmp+"<br>";
+            subRG=arrowState+document.getElementById("Sigma02").innerHTML+txt;
             
+            rg=rg+subRG+"<br>";
+        }
 
-            }
-            tmp="";
-            tmp=tmp+state;
-            tmp=tmp+"&rarr;"; 
+        
+        //4th column
+        var index="";
+        index=i+"4";                                                   //14; 24; 34; 44; 54; looping
 
-            var index="";
-            index=index+i;
-            index=index+"4";
-
-            var txt = document.getElementById(index).value.toUpperCase();
-            if(txt!=""){
-                index="";
-                index=index+i;
-                index=index+"4";
+        var txt = document.getElementById(index).value.toUpperCase();  //""; ""; "";  R; ""; looping
+        if(txt!=""){
+            index="";
+            index=i+"4";                                               //44
 
 
-                tmp=tmp+document.getElementById("03").innerHTML;
-                tmp=tmp+txt;
-                rg=rg+tmp+"<br>";
-            }
+            subRG=arrowState+txt+"|"+document.getElementById("Sigma03").innerHTML;//T->epsilon|R        //getElementById("03").innerHTML is epsilon
+            
+            rg=rg+subRG+"<br>";
+        }
 
         
     }
-    //var initial = document.getElementById("11").value.toUpperCase();
-    //rg=rg+initial+"&rarr;&sigma;"
-    document.getElementById("info").innerHTML=rg;
+    document.getElementById("infoRG").innerHTML=rg;
         
 }
-
-
-/*function changeText(value){
-    var display = document.getElementById("display");
-    var text = "";
-
-    if(value==1) text += "Zarif (Leader)";
-    if(value==2) text += "Suraya";
-    if(value==3) text += "Ain";
-    if(value==4) text += "Aimy";
-
-    display.innerHTML = text;
-}  === DELETE THIS ===*/
-
-
-/*function addRow(tableID) {
-
-    var table = document.getElementById(tableID);
-
-    var rowCount = table.rows.length;
-    var row = table.insertRow(rowCount);
-
-    var cell1 = row.insertCell(0);
-    var element1 = document.createElement("input");
-    element1.type = "checkbox";
-    element1.name="chkbox[]";
-    cell1.appendChild(element1);
-
-    var cell2 = row.insertCell(1);
-    cell2.classList.add("v");
-    var element2 = document.createElement("input");
-    element2.type = "text";
-    element2.name = "txtbox[]";
-    element2.style = "width: 15px;"
-    cell2.appendChild(element2);
-
-    var cell3 = row.insertCell(2);
-    var element3 = document.createElement("input");
-    element3.type = "text";
-    element3.name = "txtbox[]";
-    element3.style = "width: 15px;"
-    cell3.appendChild(element3);
-
-    var cell4 = row.insertCell(3);
-    var element4 = document.createElement("input");
-    element4.type = "text";
-    element4.name = "txtbox[]";
-    element4.style = "width: 15px;"
-    cell4.appendChild(element4);
-
-    var cell5 = row.insertCell(4);
-    var element5 = document.createElement("input");
-    element5.type = "text";
-    element5.name = "txtbox[]";
-    element5.style = "width: 15px;"
-    cell5.appendChild(element5);
-
-    var cell6 = row.insertCell(5);
-    var element6 = document.createElement("input");
-    element6.type = "text";
-    element6.name = "txtbox[]";
-    element6.style = "width: 15px;"
-    cell6.appendChild(element6);
-
-}   === DELETE THIS ===*/
-
-
-/*function addRowInNfaTable(tableID) {
-
-    var table = document.getElementById(tableID);
-
-    var rowCount = table.rows.length;
-    var lastRow = rowCount;
-
-
-    var row = table.insertRow(rowCount);
-
-    var cell1 = row.insertCell(0);
-    var element1 = document.createElement("input");
-    element1.type = "checkbox";
-    element1.name="chkbox[]";
-    
-    cell1.appendChild(element1);
-
-    var cell2 = row.insertCell(1);
-    cell2.classList.add("v");
-    var element2 = document.createElement("input");
-    element2.type = "text";
-    element2.name = "txtbox[]";
-    element2.id=lastRow+"1";
-    element2.className="cap";
-    element2.style = "width: 15px;"
-    
-    cell2.appendChild(element2);
-
-    var cell3 = row.insertCell(2);
-    var element3 = document.createElement("input");
-    element3.type = "text";
-    element3.name = "txtbox[]";
-    element3.id=lastRow+"2";
-    element3.className="cap";
-    element3.style = "width: 15px;"
-   
-    cell3.appendChild(element3);
-
-    var cell4 = row.insertCell(3);
-    var element4 = document.createElement("input");
-    element4.type = "text";
-    element4.name = "txtbox[]";
-    element4.style = "width: 15px;"
-    element4.id=lastRow+"3";
-    element4.className="cap";
-    cell4.appendChild(element4);
-
-}     ===maybe delete this===*/
-
-
-/*function deleteRow(tableID) {
-    try {
-    var table = document.getElementById(tableID);
-    var rowCount = table.rows.length;
-
-
-    
-    for(var i=0; i<rowCount; i++) {
-        var row = table.rows[i];
-        var chkbox = row.cells[0].childNodes[0];
-        if(null != chkbox && true == chkbox.checked) {
-            if (rowCount<=6){
-                alert("cannot delete further rows. alteast 5 values are required.");
-                break;
-            }
-            if(rowCount <= 1) {
-                alert("Cannot delete all the rows.");
-                break;
-            }
-            table.deleteRow(i);
-            rowCount--;
-            i--;
-        }
-
-
-    }
-    }catch(e) {
-        alert(e);
-    }
-}   /*  === DELETE THIS ===*/
-
-
-/*function submit() {
-    var myTab = document.getElementById('table1');
-    var arrValues = new Array();
-
-    // loop through each row of the table.
-    for (row = 1; row < myTab.rows.length - 1; row++) {
-        // loop through each cell in a row.
-        for (c = 0; c < myTab.rows[row].cells.length; c++) {
-            var element = myTab.rows.item(row).cells[c];
-            if (element.childNodes[0].getAttribute('type') == 'text') {
-                arrValues.push("'" + element.childNodes[0].value + "'");
-            }
-        }
-    }
-    
-    // finally, show the result in the console.
-    console.log(arrValues);
-}   /*  === DELETE THIS ===*/   
-
-
-
-//try to remove all
