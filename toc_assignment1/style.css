@@ -1,8 +1,8 @@
 /* Style the tab */
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    /* border-color: #838383; */
+    /* border-bottom: none; */
 }
 
 #dijkstra {
@@ -23,31 +23,40 @@
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-    background-color: inherit;
+    display: block;
+    background-color: #c5c5c5;
     float: left;
-    border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 10px 14px;
     transition: 0.3s;
+    margin-right: 5px; 
+    border-radius: 10px 10px 0 0;
+    border:none;
+    border-bottom: 1px;
+    font-size: 15pt;
 }
 
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-        background-color: #ddd;
-    }
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+      background-color: rgb(187, 187, 187);
+  }
 
-    /* Create an active/current tablink class */
-    .tab button.active {
-        background-color: #ccc;
-    }
+  /* Create an active/current tablink class */
+  .tab button.active {
+      border: solid #838383 1px;
+      background-color: rgb(255, 255, 255);
+      border-bottom: none;
+  }
 
 /* Style the tab content */
-.tabContent {
-    display: none;
-    padding: 6px 12px;
-    border-top: none;
-}
+  .tabContent {
+      display: none;
+      padding: 6px 12px; 
+      border: solid #838383 1px;
+      margin-top: -1px;
+      background-color: white;
+  }
 
   #Home{
     text-align: center;
@@ -55,8 +64,8 @@
 
   img{
     border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px; 
+    border-radius: 5px;
+    padding: 2px; 
     width: 150px; 
     height: 140px; 
   }
@@ -66,7 +75,9 @@
     outline: 5px solid #ddd;
   }
 
-  
+  /* body{
+    background-color: #6876f5;
+  } */
 
   /*.caption{
     margin-bottom: 5px;
@@ -82,13 +93,64 @@
     margin-left: 14px;
     padding-right: 11px;
     padding-left: 11px;
-
-
   }
 
   input.cap{                          /* == enq maybe this can be replace at the coding==-*/
-
-text-transform: capitalize;
-
+    text-transform: capitalize;
   }
 
+  table,th,td{
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  th{
+    text-align: center;
+  }
+
+  .memberTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50pt;
+  }
+
+  .member {
+    display: inline-block;
+    width: 150px;
+    height: 200px;
+    vertical-align: top;
+    margin: 1%;
+}
+  .name {
+    margin-top: 8pt;
+    display: block;
+  }
+
+  .member img {
+      width: 100%;
+      display: block;
+  }
+
+  .input{
+    display: inline-block;
+    margin: 30px;
+  }
+
+  .transition{
+    display: inline-block;
+    margin: 30px;
+  }
+
+  .checkStrings{
+    display: inline-block;
+    margin: 30px;
+  }
+
+  .regulargrammar{
+    display: block;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 30px;
+  }
