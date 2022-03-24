@@ -254,52 +254,51 @@ function changeText(value) {
     display.innerHTML = text;
 }
 
-function getDataFromCheckTable(){
+function checkStrings(){
     var exp1 = document.getElementById("s1").value;
     var exp2 = document.getElementById("s2").value;
     var exp3 = document.getElementById("s3").value;
     var exp4 = document.getElementById("s4").value;
     var exp5 = document.getElementById("s5").value;
-    // var exp6 = 
- 
-    transitions = [
-        ["Null",document.getElementById("Sigma00").innerHTML.toString(), document.getElementById("Sigma01").innerHTML.toString(), document.getElementById("Sigma02").innerHTML.toString(),document.getElementById("Sigma03").innerHTML.toString(),document.getElementById("Sigma03").innerHTML.toString()],
+
+    var transitions = [
+        ["Null",document.getElementById("Sigma00").innerHTML.toString(), document.getElementById("Sigma01").innerHTML.toString(), document.getElementById("Sigma02").innerHTML.toString(),document.getElementById("Sigma03").innerHTML.toString()],
         [document.getElementById("State10Table").innerHTML.toUpperCase(), document.getElementById("11").value.toUpperCase(), document.getElementById("12").value.toUpperCase(),document.getElementById("13").value.toUpperCase(),document.getElementById("14").value.toUpperCase()],
         [document.getElementById("State20Table").innerHTML.toUpperCase(), document.getElementById("21").value.toUpperCase(), document.getElementById("22").value.toUpperCase(),document.getElementById("23").value.toUpperCase(),document.getElementById("24").value.toUpperCase()],
         [document.getElementById("State30Table").innerHTML.toUpperCase(),document.getElementById("31").value.toUpperCase(), document.getElementById("32").value.toUpperCase(),document.getElementById("33").value.toUpperCase(),document.getElementById("34").value.toUpperCase()],
         [document.getElementById("State40Table").innerHTML.toUpperCase(),document.getElementById("41").value.toUpperCase(), document.getElementById("42").value.toUpperCase(),document.getElementById("43").value.toUpperCase(),document.getElementById("44").value.toUpperCase()],
         [document.getElementById("State50Table").innerHTML.toUpperCase(), document.getElementById("51").value.toUpperCase(), document.getElementById("52").value.toUpperCase(),document.getElementById("53").value.toUpperCase(),document.getElementById("54").value.toUpperCase()]
-    ];   
+    ];  
 
-    if(checkValidExpression(exp1)){
+    if(checkValidExpression(exp1,transitions)){
         document.getElementById("check1").innerHTML="OK";
     }
     else{
         document.getElementById("check1").innerHTML="NO";
     }
 
-    if(checkValidExpression(exp2)){
+    if(checkValidExpression(exp2,transitions)){
         document.getElementById("check2").innerHTML="OK";
     }
     else{
         document.getElementById("check2").innerHTML="NO";
     }
 
-    if(checkValidExpression(exp3)){
+    if(checkValidExpression(exp3,transitions)){
         document.getElementById("check3").innerHTML="OK";
     }
     else{
         document.getElementById("check3").innerHTML="NO";
     }
 
-    if(checkValidExpression(exp4)){
+    if(checkValidExpression(exp4,transitions)){
         document.getElementById("check4").innerHTML="OK";
     }
     else{
         document.getElementById("check4").innerHTML="NO";
     }
 
-    if(checkValidExpression(exp5)){
+    if(checkValidExpression(exp5,transitions)){
         document.getElementById("check5").innerHTML="OK";
     }
     else{
@@ -307,136 +306,75 @@ function getDataFromCheckTable(){
     }
 }
 
-function checkValidExpression(exp){
+function checkValidExpression(exp,transitions){
+    var next="";
+    var currentState = document.getElementById("startState").value; //initialise current with start 
+    var finalState01 = document.getElementById("FinalState10").value;
+    var finalState02 = document.getElementById("FinalState20").value;
+    var finalState03 = document.getElementById("FinalState30").value;
+    var finalState04 = document.getElementById("FinalState40").value;
+    var finalState05 = document.getElementById("FinalState50").value;
+    var nextState = "NULL";
+    var check = "";
+    
+    console.log(transitions);
 
-    var letter="";
-    var currentState = document.getElementById("startState").value; //z
-    var finalState = document.getElementById("FinalState10").value;
-    var stop = 0;
-
-    if(exp=="") { return false;}
+    if(exp == "") {return false;}
     console.log(exp.length);
-    for (i = 0; i < exp.length; i++){
-        letter = exp.charAt(i);
-        var nextState = getNextState(currentState,letter);
+    var i = 0;
+
+    while(i < exp.length){
+        next = exp.charAt(i);
+        console.log("current char = " + exp.charAt(i))
+        var nextState = getNextState(currentState,next,transitions);
+
         console.log("Current state:" + currentState);
         console.log("Next state:" + nextState);
-        if (nextState == finalState){
-            return true;
+
+        if (nextState == finalState01 || nextState == finalState02 || nextState == finalState03 || nextState == finalState04 || nextState == finalState05 ){
+            currentState = nextState;
+            check = "OK";
         }
         else if(nextState == "fail"){
-            return false;
+            check = "NO";
         }
-        else{ //bugged here, fixing
+        else{
             currentState = nextState;
-            i--; //stop skipping numbers
-            stop++;
-            console.log("Stop = " + stop);
-            if(stop > exp.length){
-                return false;
-            }
+            check = "NO";
         }
+        i++;
     }
-    if(currentState == finalState){
+    if(check == "OK"){
         return true;
     }
-}
-
-// transitions = [
-//     ["Null",document.getElementById("Sigma00").innerHTML.toString(), document.getElementById("Sigma01").innerHTML.toString(), document.getElementById("Sigma02").innerHTML.toString(),document.getElementById("Sigma03").innerHTML.toString()],
-//     [document.getElementById("State10Table").innerHTML.toUpperCase(), document.getElementById("11").value.toUpperCase(), document.getElementById("12").value.toUpperCase(),document.getElementById("13").value.toUpperCase(),document.getElementById("14").value.toUpperCase()],
-//     [document.getElementById("State20Table").innerHTML.toUpperCase(), document.getElementById("21").value.toUpperCase(), document.getElementById("22").value.toUpperCase(),document.getElementById("23").value.toUpperCase(),document.getElementById("24").value.toUpperCase()],
-//     [document.getElementById("State30Table").innerHTML.toUpperCase(),document.getElementById("31").value.toUpperCase(), document.getElementById("32").value.toUpperCase(),document.getElementById("33").value.toUpperCase(),document.getElementById("34").value.toUpperCase()],
-//     [document.getElementById("State40Table").innerHTML.toUpperCase(),document.getElementById("41").value.toUpperCase(), document.getElementById("42").value.toUpperCase(),document.getElementById("43").value.toUpperCase(),document.getElementById("44").value.toUpperCase()],
-//     [document.getElementById("State50Table").innerHTML.toUpperCase(), document.getElementById("51").value.toUpperCase(), document.getElementById("52").value.toUpperCase(),document.getElementById("53").value.toUpperCase(),document.getElementById("54").value.toUpperCase()]
-// ];
-
-function getNextState(currentState, input){ //z-1
-    var nextState="Q";
-    // if(!transitions.includes(input)){
-    //     return "fail1";
-    // }
-    // var i = 1;
-    // while (i<5) {
-    //     if(transitions[i][0]==currentState){
-    //         if(transitions[0][0]==input){
-    //             nextState= transitions[i][0];
-    //             i++;
-    //         }
-    //         else if(transitions[0][1]==input){
-    //             nextState= transitions[i][1];
-    //             i++;
-    //         }
-    //         else if(transitions[0][2]==input){
-    //             nextState= transitions[i][2];
-    //             i++;
-    //         }
-    //         else if(transitions[0][3]==input){
-    //             nextState= transitions[i][3];
-    //             i++;
-    //         }
-    //         else{
-    //             alert("no such input");
-    //             console.log("fail1");
-    //             return "fail";
-    //         }
-    //     }
-    //     else{
-    //         console.log("fail2");
-    //         return "fail";
-    //     }
-    //     console.log("ns = " + nextState);
-    // }
-    // return nextState;
-    for (i=1; i<5; i++){
-        if(transitions[i][0]==currentState){
-            if(transitions[0][0]==input){
-                nextState= transitions[i][0];
-            }
-            else if(transitions[0][1]==input){
-                nextState= transitions[i][1];
-            }
-            else if(transitions[0][2]==input){
-                nextState= transitions[i][2];
-            }
-            else if(transitions[0][3]==input){
-                nextState= transitions[i][3];
-            }
-            else{
-                alert("no such input");
-                return "fail";
-            }
-        }
-        else{
-            return "fail";
-        }
-        console.log("ns = " + nextState);
-        return nextState;
+    else if(check == "NO"){
+        return false;
     }
 }
-function getState(currentState, input){
-    var nextState="Q";
-    for (i=1; i<5; i++){
+
+function getNextState(currentState, next, transitions){
+    var nextState="NULL";
+    for (i=1; i<=5; i++){
         if(transitions[i][0]==currentState){
-            if(transitions[0][0]==input){
-                nextState= transitions[i][0];
-            }
-            else if(transitions[0][1]==input){
+            if(transitions[0][1]==next){
                 nextState= transitions[i][1];
+                // console.log("ns = " + nextState);
+                break;
             }
-            else if(transitions[0][2]==input){
+            else if(transitions[0][2]==next){
                 nextState= transitions[i][2];
+                // console.log("ns = " + nextState);
+                break;
             }
-            else if(transitions[0][3]==input){
+            else if(transitions[0][3]==next){
                 nextState= transitions[i][3];
+                // console.log("ns = " + nextState);
+                break;
             }
             else{
-                return "fail";
+                return "Error";
             }
         }
-        else{
-            return "fail";
-        }
-        return nextState;
     }
+    return nextState;
 }
