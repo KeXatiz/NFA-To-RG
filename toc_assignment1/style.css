@@ -143,13 +143,16 @@
     margin: 30px;
   }
 
-  .transition-table1{
-    display: block;
+  .transition-table1 , .transition-table2{
+    display: inline-block;
+    border-style: solid;
     margin: 30px;
   }
 
   .statements{
-    display:inline-block;
+    display:-moz-inline-stack;
+    border-style: solid;
+    padding-left: 2%;
     margin: 30px;
   }
 
