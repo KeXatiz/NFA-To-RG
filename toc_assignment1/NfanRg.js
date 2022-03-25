@@ -218,8 +218,37 @@ function toRg(tableID){
 
 }
 
+finalStateArr2 = [];
 
-function checkStrings(){
+function setFinalState2(){
+    finalStateArr2.splice(0, finalStateArr2.length);
+
+    if(document.getElementById("FinalState10").value != ""){
+        finalStateArr2.push(document.getElementById("FinalState10").value);
+        console.log(document.getElementById("FinalState10").value);
+    }
+    if(document.getElementById("FinalState20").value != ""){
+        finalStateArr2.push(document.getElementById("FinalState20").value);
+        console.log(document.getElementById("FinalState20").value);
+    }
+    if(document.getElementById("FinalState30").value != ""){
+        finalStateArr2.push(document.getElementById("FinalState30").value);
+        console.log(document.getElementById("FinalState30").value);
+    }
+    if(document.getElementById("FinalState40").value != ""){
+        finalStateArr2.push(document.getElementById("FinalState40").value);
+        console.log(document.getElementById("FinalState40").value);
+    }
+    if(document.getElementById("FinalState50").value != ""){
+        finalStateArr2.push(document.getElementById("FinalState50").value);
+        console.log(document.getElementById("FinalState50").value);
+    }
+
+    console.log(finalStateArr2);
+}
+
+function checkStrings2(){
+    setFinalState2();
     var exp1 = document.getElementById("s1").value;
     var exp2 = document.getElementById("s2").value;
     var exp3 = document.getElementById("s3").value;
@@ -235,50 +264,45 @@ function checkStrings(){
         [document.getElementById("State50Table").innerHTML.toUpperCase(), document.getElementById("51").value.toUpperCase(), document.getElementById("52").value.toUpperCase(),document.getElementById("53").value.toUpperCase(),document.getElementById("54").value.toUpperCase()]
     ];  
 
-    if(checkValidExpression(exp1,transitions)){
-        document.getElementById("check1").innerHTML="OK";
+    if(checkValidExpression2(exp1,transitions)){
+        document.getElementById("check6").innerHTML="OK";
     }
     else{
-        document.getElementById("check1").innerHTML="NO";
+        document.getElementById("check6").innerHTML="NO";
     }
 
-    if(checkValidExpression(exp2,transitions)){
-        document.getElementById("check2").innerHTML="OK";
+    if(checkValidExpression2(exp2,transitions)){
+        document.getElementById("check7").innerHTML="OK";
     }
     else{
-        document.getElementById("check2").innerHTML="NO";
+        document.getElementById("check7").innerHTML="NO";
     }
 
-    if(checkValidExpression(exp3,transitions)){
-        document.getElementById("check3").innerHTML="OK";
+    if(checkValidExpression2(exp3,transitions)){
+        document.getElementById("check8").innerHTML="OK";
     }
     else{
-        document.getElementById("check3").innerHTML="NO";
+        document.getElementById("check8").innerHTML="NO";
     }
 
-    if(checkValidExpression(exp4,transitions)){
-        document.getElementById("check4").innerHTML="OK";
+    if(checkValidExpression2(exp4,transitions)){
+        document.getElementById("check9").innerHTML="OK";
     }
     else{
-        document.getElementById("check4").innerHTML="NO";
+        document.getElementById("check9").innerHTML="NO";
     }
 
-    if(checkValidExpression(exp5,transitions)){
-        document.getElementById("check5").innerHTML="OK";
+    if(checkValidExpression2(exp5,transitions)){
+        document.getElementById("check0").innerHTML="OK";
     }
     else{
-        document.getElementById("check5").innerHTML="NO";
+        document.getElementById("check0").innerHTML="NO";
     }
 }
 
-function checkValidExpression(exp,transitions){
+function checkValidExpression2(exp,transitions){
     var next="";
     var currentState = document.getElementById("StartState").value; //initialise current with start 
-    var finalState01 = document.getElementById("FinalState10").value;
-    var finalState02 = document.getElementById("FinalState20").value;
-    var finalState03 = document.getElementById("FinalState30").value;
-    var finalState04 = document.getElementById("FinalState40").value;
-    var finalState05 = document.getElementById("FinalState50").value;
     var nextState = "NULL";
     var check = "";
     
@@ -291,12 +315,12 @@ function checkValidExpression(exp,transitions){
     while(i < exp.length){
         next = exp.charAt(i);
         console.log("current char = " + exp.charAt(i))
-        var nextState = getNextState(currentState,next,transitions);
+        var nextState = getNextState2(currentState,next,transitions);
 
         console.log("Current state:" + currentState);
         console.log("Next state:" + nextState);
 
-        if (nextState == finalState01 || nextState == finalState02 || nextState == finalState03 || nextState == finalState04 || nextState == finalState05 ){
+        if (finalStateArr2.includes(nextState)){
             currentState = nextState;
             check = "OK";
         }
@@ -317,7 +341,7 @@ function checkValidExpression(exp,transitions){
     }
 }
 
-function getNextState(currentState, next, transitions){
+function getNextState2(currentState, next, transitions){
     var nextState="NULL";
     for (i=1; i<=5; i++){
         if(transitions[i][0]==currentState){
