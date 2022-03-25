@@ -5,6 +5,8 @@ function submit() {
     DisplayVariablesC();
     DisplayEpsilon();
     DisplayStates();
+
+    DisplayVariablesA_NoEps();
 }
 
 function DisplayVariables() {
@@ -12,52 +14,62 @@ function DisplayVariables() {
     const V = [document.getElementById('V1').value, document.getElementById('V2').value, document.getElementById('V3').value
         , document.getElementById('V4').value, document.getElementById('V5').value];
 
-    document.getElementById("V1disp1").innerHTML = V[0];
-    document.getElementById("V2disp1").innerHTML = V[1];
-    document.getElementById("V3disp1").innerHTML = V[2];
-    document.getElementById("V4disp1").innerHTML = V[3];
-    document.getElementById("V5disp1").innerHTML = V[4];
+
+    //Loop to display 
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "disp1").innerHTML = V[i];
+    }
 
     document.getElementById("V1disp2").innerHTML = V[0];
 
-    document.getElementById("V1disp3").innerHTML = V[0];
-    document.getElementById("V2disp3").innerHTML = V[1];
-    document.getElementById("V3disp3").innerHTML = V[2];
-    document.getElementById("V4disp3").innerHTML = V[3];
-    document.getElementById("V5disp3").innerHTML = V[4];
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "disp3").innerHTML = V[i];
+    }
+
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "disp4").innerHTML = V[i];
+    }
 }
 
 function DisplayVariablesA() {
     const Va = [document.getElementById('V1a').value, document.getElementById('V2a').value, document.getElementById('V3a').value
         , document.getElementById('V4a').value, document.getElementById('V5a').value];
 
-    document.getElementById("V1Adisp1").innerHTML = Va[0];
-    document.getElementById("V2Adisp1").innerHTML = Va[1];
-    document.getElementById("V3Adisp1").innerHTML = Va[2];
-    document.getElementById("V4Adisp1").innerHTML = Va[3];
-    document.getElementById("V5Adisp1").innerHTML = Va[4];
+    //Loop to display 
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "Adisp1").innerHTML = Va[i];
+    }
+
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "Adisp2").innerHTML = Va[i];
+    }
 }
 
 function DisplayVariablesB() {
     const Vb = [document.getElementById('V1b').value, document.getElementById('V2b').value, document.getElementById('V3b').value
         , document.getElementById('V4b').value, document.getElementById('V5b').value];
 
-    document.getElementById("V1Bdisp1").innerHTML = Vb[0];
-    document.getElementById("V2Bdisp1").innerHTML = Vb[1];
-    document.getElementById("V3Bdisp1").innerHTML = Vb[2];
-    document.getElementById("V4Bdisp1").innerHTML = Vb[3];
-    document.getElementById("V5Bdisp1").innerHTML = Vb[4];
+    //Loop to display 
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "Bdisp1").innerHTML = Vb[i];
+    }
+
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "Bdisp2").innerHTML = Vb[i];
+    }
 }
 
 function DisplayVariablesC() {
     const Vc = [document.getElementById('V1c').value, document.getElementById('V2c').value, document.getElementById('V3c').value
         , document.getElementById('V4c').value, document.getElementById('V5c').value];
 
-    document.getElementById("V1Cdisp1").innerHTML = Vc[0];
-    document.getElementById("V2Cdisp1").innerHTML = Vc[1];
-    document.getElementById("V3Cdisp1").innerHTML = Vc[2];
-    document.getElementById("V4Cdisp1").innerHTML = Vc[3];
-    document.getElementById("V5Cdisp1").innerHTML = Vc[4];
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "Cdisp1").innerHTML = Vc[i];
+    }
+
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "Cdisp1").innerHTML = Vc[i];
+    }
 }
 
 function DisplayEpsilon() {
@@ -65,53 +77,130 @@ function DisplayEpsilon() {
     const Veps = [document.getElementById('V1eps').value, document.getElementById('V2eps').value, document.getElementById('V3eps').value
         , document.getElementById('V4eps').value, document.getElementById('V5eps').value];
 
-    document.getElementById("V1epsDisp1").innerHTML = Veps[0];
-    document.getElementById("V2epsDisp1").innerHTML = Veps[1];
-    document.getElementById("V3epsDisp1").innerHTML = Veps[2];
-    document.getElementById("V4epsDisp1").innerHTML = Veps[3];
-    document.getElementById("V5epsDisp1").innerHTML = Veps[4];
-
-    document.getElementById("V1epsDisp2").innerHTML = Veps[0];
-    document.getElementById("V2epsDisp2").innerHTML = Veps[1];
-    document.getElementById("V3epsDisp2").innerHTML = Veps[2];
-    document.getElementById("V4epsDisp2").innerHTML = Veps[3];
-    document.getElementById("V5epsDisp2").innerHTML = Veps[4];
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("V" + (i + 1) + "epsDisp2").innerHTML = Veps[i];
+    }
 }
 
-function DisplayStates(){
-    const Veps = [document.getElementById('V1eps').value, document.getElementById('V2eps').value, document.getElementById('V3eps').value
-    , document.getElementById('V4eps').value, document.getElementById('V5eps').value];
-    
-    
-    if(!Veps[0]){
+function DisplayStates() {
+    //Initialize variables
+    const Vf = [document.getElementById('V1f').checked, document.getElementById('V2f').checked, document.getElementById('V3f').checked
+        , document.getElementById('V4f').checked, document.getElementById('V5f').checked];
+
+    const V = [document.getElementById('V1').value, document.getElementById('V2').value, document.getElementById('V3').value
+        , document.getElementById('V4').value, document.getElementById('V5').value];
+
+    //Reset display to empty
+    if (!Vf[0]) {
+        document.getElementById("V1fDisp1").innerHTML = "";
         document.getElementById("finalsymbolEpsilon1").innerHTML = "";
+        document.getElementById("finalsymbolEpsilon6").innerHTML = "";
     }
-    if(!Veps[1]){
+    if (!Vf[1]) {
+        document.getElementById("V2fDisp1").innerHTML = "";
         document.getElementById("finalsymbolEpsilon2").innerHTML = "";
+        document.getElementById("finalsymbolEpsilon7").innerHTML = "";
     }
-    if(!Veps[2]){
+    if (!Vf[2]) {
+        document.getElementById("V3fDisp1").innerHTML = "";
         document.getElementById("finalsymbolEpsilon3").innerHTML = "";
+        document.getElementById("finalsymbolEpsilon8").innerHTML = "";
     }
-    if(!Veps[3]){
+    if (!Vf[3]) {
+        document.getElementById("V4fDisp1").innerHTML = "";
         document.getElementById("finalsymbolEpsilon4").innerHTML = "";
+        document.getElementById("finalsymbolEpsilon9").innerHTML = "";
     }
-    if(!Veps[4]){
+    if (!Vf[4]) {
+        document.getElementById("V5fDisp1").innerHTML = "";
         document.getElementById("finalsymbolEpsilon5").innerHTML = "";
+        document.getElementById("finalsymbolEpsilon10").innerHTML = "";
     }
 
-    if(Veps[0]){
+    //Set display to *
+    if (Vf[0]) {
+        document.getElementById("V1fDisp1").innerHTML = V[0];
         document.getElementById("finalsymbolEpsilon1").innerHTML = "*";
+        document.getElementById("finalsymbolEpsilon6").innerHTML = "*";
     }
-    if(Veps[1]){
+    if (Vf[1]) {
+        document.getElementById("V2fDisp1").innerHTML = V[1];
         document.getElementById("finalsymbolEpsilon2").innerHTML = "*";
+        document.getElementById("finalsymbolEpsilon7").innerHTML = "*";
     }
-    if(Veps[2]){
+    if (Vf[2]) {
+        document.getElementById("V3fDisp1").innerHTML = V[2];
         document.getElementById("finalsymbolEpsilon3").innerHTML = "*";
+        document.getElementById("finalsymbolEpsilon8").innerHTML = "*";
     }
-    if(Veps[3]){
+    if (Vf[3]) {
+        document.getElementById("V4fDisp1").innerHTML = V[3];
         document.getElementById("finalsymbolEpsilon4").innerHTML = "*";
+        document.getElementById("finalsymbolEpsilon9").innerHTML = "*";
     }
-    if(Veps[4]){
+    if (Vf[4]) {
+        document.getElementById("V5fDisp1").innerHTML = V[4];
         document.getElementById("finalsymbolEpsilon5").innerHTML = "*";
+        document.getElementById("finalsymbolEpsilon10").innerHTML = "*";
     }
+}
+
+function DisplayVariablesA_NoEps() {
+    //Initialize variables
+    const V = [document.getElementById('V1').value, document.getElementById('V2').value, document.getElementById('V3').value
+        , document.getElementById('V4').value, document.getElementById('V5').value];
+
+    const Va = [document.getElementById('V1a').value, document.getElementById('V2a').value, document.getElementById('V3a').value
+        , document.getElementById('V4a').value, document.getElementById('V5a').value];
+
+    const Vb = [document.getElementById('V1b').value, document.getElementById('V2b').value, document.getElementById('V3b').value
+        , document.getElementById('V4b').value, document.getElementById('V5b').value];
+
+    const Vc = [document.getElementById('V1c').value, document.getElementById('V2c').value, document.getElementById('V3c').value
+        , document.getElementById('V4c').value, document.getElementById('V5c').value];
+
+    const Veps = [document.getElementById('V1eps').value, document.getElementById('V2eps').value, document.getElementById('V3eps').value
+        , document.getElementById('V4eps').value, document.getElementById('V5eps').value];
+
+
+    for (let i = 0; i < 5; i++) { //1) Loop variable. Eg, A,B,C
+
+        if (V[i]) { //If variable not empty
+
+            for (let j = 0; j < 5; j++) { //2) Loop epsilon
+
+                if (Veps[j]) { //If epsilon not empty
+
+                    if (V[i].localeCompare(Veps[j]) == 0) { //If variable same as Epsilon
+
+                        for (let k = 0; k < 5; k++) { //3) Loop value. Eg, a,b,c
+
+                            if (V[j].localeCompare(Va[k]) == 0) { //If Epsilon same as value
+                                document.getElementById("V" + (k + 1) + "Adisp2").innerHTML = ""; //Reset display
+                                document.getElementById("V" + (k + 1) + "Adisp2").innerHTML = "{" + Va[k] + "," + Veps[j] + "}";
+                            }
+
+                            if (V[j].localeCompare(Vb[k]) == 0) { //If Epsilon same as value
+                                document.getElementById("V" + (k + 1) + "Bdisp2").innerHTML = ""; //Reset display
+                                document.getElementById("V" + (k + 1) + "Bdisp2").innerHTML = "{" + Vb[k] + "," + Veps[j] + "}";
+                            }
+
+                            if (V[j].localeCompare(Vc[k]) == 0) { //If Epsilon same as value
+                                document.getElementById("V" + (k + 1) + "Cdisp2").innerHTML = ""; //Reset display
+                                document.getElementById("V" + (k + 1) + "Cdisp2").innerHTML = "{" + Vc[k] + "," + Veps[j] + "}";
+                            }
+
+                        } // end of for loop
+
+                    } //end of if statement
+
+                } // end of if statement
+
+            } // end of for loop
+
+        } //end of if statement
+
+    } // end of for loop
+
+
 }

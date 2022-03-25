@@ -87,6 +87,7 @@
         <table id="table1" cellspacing="10px" cellpadding="10%">
             <caption><b>Regular Grammar (input)</b><br>(First variable is the Start State) </caption>
             <tr>
+                <th class="yellowCell">Final ?</th>
                 <th class="yellowCell">Variable</th>
                 <th class="yellowCell">a</th>
                 <th class="yellowCell">b</th>
@@ -95,6 +96,7 @@
             </tr>
             <tr>
                 <!--Variable 1-->
+                <th><input id="V1f" type="checkbox" name="chk"/></th>
                 <td class="v" style="text-align:center"><input id="V1" pattern="[a-zA-Z]"
                         oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
                         style="width: 15px;"
@@ -123,6 +125,7 @@
             </tr>
             <tr>
                 <!--Variable 2-->
+                <th><input id="V2f" type="checkbox" name="chk"/></th>
                 <td class="v" style="text-align:center"><input id="V2" pattern="[a-zA-Z]"
                         oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
                         style="width: 15px;"
@@ -151,6 +154,7 @@
             </tr>
             <tr>
                 <!--Variable 3-->
+                <th><input id="V3f" type="checkbox" name="chk"/></th>
                 <td class="v" style="text-align:center"><input id="V3" pattern="[a-zA-Z]"
                         oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
                         style="width: 15px;"
@@ -179,6 +183,7 @@
             </tr>
             <tr>
                 <!--Variable 4-->
+                <th><input id="V4f" type="checkbox" name="chk"/></th>
                 <td class="v" style="text-align:center"><input id="V4" pattern="[a-zA-Z]"
                         oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
                         style="width: 15px;"
@@ -207,6 +212,7 @@
             </tr>
             <tr>
                 <!--Variable 5-->
+                <th><input id="V5f" type="checkbox" name="chk"/></th>
                 <td class="v" style="text-align:center"><input id="V5" pattern="[a-zA-Z]"
                         oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
                         style="width: 15px;"
@@ -235,19 +241,19 @@
             </tr>
         </table>
         <br>
-        <input type="button" value="Submit" onclick="submit()" />
+        <input type="button" value="Convert RG to NFA" onclick="submit()" />
         </div>
 
         <!-- STATEMENT DIV -->
         <div class="statements">
-            <caption> <b>Statement</b> </caption>
+            <h4>Statement</h4>
             <p>M = (Q,&Sigma;,&delta;,P0,F)</p>
             <p>Q = {<var id="V1disp1"></var>,<var id="V2disp1"></var>,<var id="V3disp1"></var>,<var
                     id="V4disp1"></var>,<var id="V5disp1"></var>}</p>
             <p>&Sigma; = {a,b,c}</p>
             <p>P0 = <var id="V1disp2"></var></p>
-            <p>F = {<var id="V1epsDisp1"></var>,<var id="V2epsDisp1"></var>,<var id="V3epsDisp1"></var>,<var
-                    id="V4epsDisp1"></var>,<var id="V5epsDisp1"></var>}</p>
+            <p>F = {<var id="V1fDisp1"></var>,<var id="V2fDisp1"></var>,<var id="V3fDisp1"></var>,<var
+                    id="V4fDisp1"></var>,<var id="V5fDisp1"></var>}</p>
         </div>
         <!-- END OF STATEMENT DIV -->
 
@@ -255,7 +261,7 @@
         <div class="transition-table1">
         <!-- TRANSITION TABLE WITH EPSILON-->
         <table id="table2" cellspacing="10px" cellpadding="10%">
-            <caption><b>Transition Table With &epsilon;</b><br> </caption>
+            <caption><b>Transition Table With &epsilon;</b><br> (Empty means ∅) </caption>
             <tr>
                 <th class="grayCell">Variable</th>
                 <th class="grayCell">a</th>
@@ -316,6 +322,60 @@
         </div>
         <!-- END OF TRANSITION DIV-->
 
+        <!-- TRANSITION WITHOUT EPSILON DIV -->
+        <div class="transition-table2">
+                <table id="table3" cellspacing="10px" cellpadding="10%">
+                        <caption><b>Transition Table Without &epsilon;</b><br> (Empty means ∅) </caption>
+                        <tr>
+                                <th class="grayCell">Variable</th>
+                                <th class="grayCell">a</th>
+                                <th class="grayCell">b</th>
+                                <th class="grayCell">c</th>
+                                <th class="grayCell"> Start State Symbol </th>
+                                <th class="grayCell"> Final State Symbol</th>
+                        </tr>
+                        <tr>
+                                <th class="grayCell" id="V1disp4"></th>
+                                <th id="V1Adisp2"></th>
+                                <td id="V1Bdisp2"></td>
+                                <td id="V1Cdisp2"></td>
+                                <td style="text-align:center">></td> <!-- TO DISPLAY START SYMBOL -->
+                                <td id="finalsymbolEpsilon6" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+                        </tr>
+                        <tr>
+                                <th class="grayCell" id="V2disp4"></th>       
+                                <th id="V2Adisp2"></th>              
+                                <td id="V2Bdisp2"></td>
+                                <td id="V2Cdisp2"></td>
+                                <td ></td> <!-- TO DISPLAY START SYMBOL -->
+                                <td id="finalsymbolEpsilon7" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->      
+                        </tr>
+                        <tr>
+                                <th class="grayCell" id="V3disp4"></th>
+                                <th id="V3Adisp2"></th>
+                                <td id="V3Bdisp2"></td>
+                                <td id="V3Cdisp2"></td>
+                                <td ></td> <!-- TO DISPLAY START SYMBOL -->
+                                <td id="finalsymbolEpsilon8" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+                        </tr>
+                        <tr>
+                                <th class="grayCell" id="V4disp4"></th>
+                                <th id="V4Adisp2"></th>
+                                <td id="V4Bdisp2"></td>
+                                <td id="V4Cdisp2"></td>
+                                <td ></td> <!-- TO DISPLAY START SYMBOL -->
+                                <td id="finalsymbolEpsilon9" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+                        </tr>
+                        <tr>
+                                <th class="grayCell" id="V5disp4"></th>
+                                <th id="V5Adisp2"></th>
+                                <td id="V5Bdisp2"></td>
+                                <td id="V5Cdisp2"></td>
+                                <td></td> <!-- TO DISPLAY START SYMBOL -->
+                                <td id="finalsymbolEpsilon10" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+                        </tr>
+                </table>
+        </div>
     </div>
     <!-- =====================================================-->
     <!-- ============== END OF RG TO NFA PAGE HTML ===========-->
