@@ -2,240 +2,643 @@
 <html lang="en">
 
 <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TOC Assignment</title>
-        <script src="main.js"></script>
-        <link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOC Assignment</title>
+    <script src="main.js"></script>
+    <script src="NfanRg.js"></script> 
+    <script src="RgnNfa.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="document.getElementById('defaultOpen').click();">
+    <div class="tab">
+        <button class="tablinks" onclick="openTabs(event, 'Home')" id="defaultOpen">Home</button>
+        <button class="tablinks" onclick="openTabs(event, 'RgNfa')">RG &rarr; NFA</button>
+        <button class="tablinks" onclick="openTabs(event, 'NfaRg')">NFA &rarr; RG</button>
+        <button class="tablinks" onclick="openTabs(event, 'Help')">Help + Doc</button>
+    </div>
+
+    <!-- =====================================================-->
+    <!-- ==================HOME PAGE HTML=====================-->
+    <!-- =====================================================-->
+    <div id="Home" class="tabContent">
+        <h4>TIC2151 THEORY OF COMPUTATION</h4>
+        <table class="memberTable">
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+            </tr>
+            <tr>
+                <td>MUHAMMAD AMIR NAQIUDDIN BIN SALEH</td>
+                <td>1191201228</td>
+            </tr>
+            <tr>
+                <td>ENGKU AMMAR MUZAMIL BIN ENGKU MUSA</td>
+                <td>1191201486</td>
+            </tr>
+            <tr>
+                <td>MUHAMMAD FEKRY BIN SAHARUDIN</td>
+                <td>1191201485</td>
+            </tr>
+            <tr>
+                <td>OOI YI XUIN</td>
+                <td>1191302544</td>
+            </tr>
+        </table>
+        <div class="member">
+            <img src="profile.png" class="leader" alt="Responsive image" />
+            <div class="name">Ammir (Leader)</div>
+        </div>
+        <div class="member">
+            <img src="profile.png" alt="Responsive image" />
+            <div class="name">Ammar</div>
+        </div>
+        <div class="member">
+            <img src="profile.png" alt="Responsive image" />
+            <div class="name">Fekry</div>
+        </div>
+        <div class="member">
+            <img src="profile.png" alt="Responsive image" />
+            <div class="name">Yi Xuin</div>
+        </div>
+        <!-- <a href=# onclick='changeText(1)'><img src="profile.png" alt="amir" class="leader"></a>
+        <a href=# onclick='changeText(2)'><img src="profile.png" alt="engku" class="ammar"></a>
+        <a href=# onclick='changeText(3)'><img src="profile.png" alt="fek" class="fekry"></a>
+        <a href=# onclick='changeText(4)'><img src="profile.png" alt="yixuin" class="yixuin"></a> -->
+
+        </br>
+        </br>
+        <div id="display"></div>
+    </div>
+    <!-- =====================================================-->
+    <!-- ===============END OF HOME PAGE HTML=================-->
+    <!-- =====================================================-->
+
+
+    <!-- =====================================================-->
+    <!-- =============== RG TO NFA PAGE PAGE HTML ============-->
+    <!-- =====================================================-->
+    <div id="RgNfa" class="tabContent">
+        <div class="input">
+        <!-- REGULAR GRAMMAR TO NFA INPUT SECTION -->
+        <!-- INPUT FROM USER-->
+        <table id="table1" cellspacing="10px" cellpadding="10%">
+            <caption><b>Regular Grammar (input)</b><br>(First variable is the Start State) </caption>
+            <tr>
+                <th class="yellowCell">Variable</th>
+                <th class="yellowCell">a</th>
+                <th class="yellowCell">b</th>
+                <th class="yellowCell">c</th>
+                <th class="yellowCell"> &epsilon; </th>
+            </tr>
+            <tr>
+                <!--Variable 1-->
+                <td class="v" style="text-align:center"><input id="V1" pattern="[a-zA-Z]"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V1').innerHTML=this.value;"
+                        required></td> <!-- Variable 1 -->
+                <td><input id="V1a" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="a"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V1a').innerHTML=this.value;">
+                </td> <!-- Variable 1 a -->
+                <td><input id="V1b" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="b"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V1b').innerHTML=this.value;">
+                </td><!-- Variable 1 b -->
+                <td><input id="V1c" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="c"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V1c').innerHTML=this.value;">
+                </td><!-- Variable 1 c -->
+                <td><input id="V1eps" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="e"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V1eps').innerHTML=this.value;">
+                </td><!-- Variable 1 eps -->
+            </tr>
+            <tr>
+                <!--Variable 2-->
+                <td class="v" style="text-align:center"><input id="V2" pattern="[a-zA-Z]"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V2').innerHTML=this.value;"
+                        required></td> <!-- Variable 2 -->
+                <td><input id="V2a" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="a"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V2a').innerHTML=this.value;">
+                </td> <!-- Variable 2 a -->
+                <td><input id="V2b" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="b"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V2b').innerHTML=this.value;">
+                </td> <!-- Variable 2 b -->
+                <td><input id="V2c" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="c"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V2c').innerHTML=this.value;">
+                </td> <!-- Variable 2 c -->
+                <td><input id="V2eps" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="e"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V2eps').innerHTML=this.value;">
+                </td> <!-- Variable 2 eps -->
+            </tr>
+            <tr>
+                <!--Variable 3-->
+                <td class="v" style="text-align:center"><input id="V3" pattern="[a-zA-Z]"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V3').innerHTML=this.value;"
+                        required></td>
+                <td><input id="V3a" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="a"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V3a').innerHTML=this.value;">
+                </td>
+                <td><input id="V3b" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="b"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V3b').innerHTML=this.value;">
+                </td>
+                <td><input id="V3c" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="c"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V3c').innerHTML=this.value;">
+                </td>
+                <td><input id="V3eps" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="e"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V3eps').innerHTML=this.value;">
+                </td>
+            </tr>
+            <tr>
+                <!--Variable 4-->
+                <td class="v" style="text-align:center"><input id="V4" pattern="[a-zA-Z]"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V4').innerHTML=this.value;"
+                        required></td>
+                <td><input id="V4a" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="a"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V4a').innerHTML=this.value;">
+                </td>
+                <td><input id="V4b" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="b"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V4b').innerHTML=this.value;">
+                </td>
+                <td><input id="V4c" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="c"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V4c').innerHTML=this.value;">
+                </td>
+                <td><input id="V4eps" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="e"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V4eps').innerHTML=this.value;">
+                </td>
+            </tr>
+            <tr>
+                <!--Variable 5-->
+                <td class="v" style="text-align:center"><input id="V5" pattern="[a-zA-Z]"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="variable"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V5').innerHTML=this.value;"
+                        required></td>
+                <td><input id="V5a" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="a"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V5a').innerHTML=this.value;">
+                </td>
+                <td><input id="V5b" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="b"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V5b').innerHTML=this.value;">
+                </td>
+                <td><input id="V5c" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="c"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V5c').innerHTML=this.value;">
+                </td>
+                <td><input id="V5eps" pattern="[a-zA-Z]*"
+                        oninvalid="setCustomValidity('Please enter one alphabet only. ')" type="text" name="e"
+                        style="width: 15px;"
+                        onchange="this.value=this.value.toUpperCase();document.getElementById('V5eps').innerHTML=this.value;">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input type="button" value="Submit" onclick="submit()" />
+        </div>
+
+        <!-- STATEMENT DIV -->
+        <div class="statements">
+            <caption> <b>Statement</b> </caption>
+            <p>M = (Q,&Sigma;,&delta;,P0,F)</p>
+            <p>Q = {<var id="V1disp1"></var>,<var id="V2disp1"></var>,<var id="V3disp1"></var>,<var
+                    id="V4disp1"></var>,<var id="V5disp1"></var>}</p>
+            <p>&Sigma; = {a,b,c}</p>
+            <p>P0 = <var id="V1disp2"></var></p>
+            <p>F = {<var id="V1epsDisp1"></var>,<var id="V2epsDisp1"></var>,<var id="V3epsDisp1"></var>,<var
+                    id="V4epsDisp1"></var>,<var id="V5epsDisp1"></var>}</p>
+        </div>
+        <!-- END OF STATEMENT DIV -->
+
+        <!-- TRANSITION DIV-->
+        <div class="transition-table1">
+        <!-- TRANSITION TABLE WITH EPSILON-->
+        <table id="table2" cellspacing="10px" cellpadding="10%">
+            <caption><b>Transition Table With &epsilon;</b><br> </caption>
+            <tr>
+                <th class="grayCell">Variable</th>
+                <th class="grayCell">a</th>
+                <th class="grayCell">b</th>
+                <th class="grayCell">c</th>
+                <th class="grayCell"> &epsilon; </th>
+                <th class="grayCell"> Start State Symbol </th>
+                <th class="grayCell"> Final State Symbol</th>
+            </tr>
+            <tr>
+                <th class="grayCell" id="V1disp3"></th>
+                <td id="V1Adisp1"></td>
+                <td id="V1Bdisp1"></td>
+                <td id="V1Cdisp1"></td>
+                <td id="V1epsDisp2"></td>
+                <td style="text-align:center">></td> <!-- TO DISPLAY START SYMBOL -->
+                <td id="finalsymbolEpsilon1" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+
+            </tr>
+            <tr>
+                <th class="grayCell" id="V2disp3"></th>
+                <td id="V2Adisp1"></td>
+                <td id="V2Bdisp1"></td>
+                <td id="V2Cdisp1"></td>
+                <td id="V2epsDisp2"></td>
+                <td></td>
+                <td id="finalsymbolEpsilon2" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+            </tr>
+            <tr>
+                <th class="grayCell" id="V3disp3"></th>
+                <td id="V3Adisp1"></td>
+                <td id="V3Bdisp1"></td>
+                <td id="V3Cdisp1"></td>
+                <td id="V3epsDisp2"></td>
+                <td></td>
+                <td id="finalsymbolEpsilon3" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+            </tr>
+            <tr>
+                <th class="grayCell" id="V4disp3"></th>
+                <td id="V4Adisp1"></td>
+                <td id="V4Bdisp1"></td>
+                <td id="V4Cdisp1"></td>
+                <td id="V4epsDisp2"></td>
+                <td></td>
+                <td id="finalsymbolEpsilon4" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+            </tr>
+            <tr>
+                <th class="grayCell" id="V5disp3"></th>
+                <td id="V5Adisp1"></td>
+                <td id="V5Bdisp1"></td>
+                <td id="V5Cdisp1"></td>
+                <td id="V5epsDisp2"></td>
+                <td></td>
+                <td id="finalsymbolEpsilon5" style="text-align:center"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+            </tr>
+        </table>
+        <!-- END OF TRANSITION TABLE WITH EPSILON-->
+        </div>
+        <!-- END OF TRANSITION DIV-->
+
+    </div>
+    <!-- =====================================================-->
+    <!-- ============== END OF RG TO NFA PAGE HTML ===========-->
+    <!-- =====================================================-->
+
+
+    <!-- =====================================================-->
+    <!-- ================== NFA TO RG PAGE HTML ==============-->
+    <!-- =====================================================-->
+    <div id="NfaRg" class="tabContent">
         <!-- NFA TO REGULAR GRAMMAR INPUT SECTION -->
-        <h3>NFA to RG</h3>
         <!--<p>Regular Grammars (Input)</p> -->
-        <table>
+        <div class="input">
+            <table>
                 <caption><b>NFA (input)</b><br>(First box of Q must be the start state) </caption>
                 <!-- SIGMA INPUT-->
                 <tr>
-                        <td class="yellowCell">&sum;</td>
-                        <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="document.getElementById('Sigma00').innerHTML=this.value;" required>
-                        </td>
-                        <!-- ELEMENT ID Sigma00 -->
-                        <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="document.getElementById('Sigma01').innerHTML=this.value;" required>
-                        </td>
-                        <!-- ELEMENT ID Sigma01 -->
-                        <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="document.getElementById('Sigma02').innerHTML=this.value;" required>
-                        </td>
-                        <!-- ELEMENT ID Sigma02 -->
-                        <td>&epsilon;</td>
+                    <td class="yellowCell">&sum;</td>
+                    <td>
+                        <input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="document.getElementById('Sigma00').innerHTML=this.value;" required>
+                    </td>
+                    <!-- ELEMENT ID Sigma00 -->
+                    <td>
+                        <input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="document.getElementById('Sigma01').innerHTML=this.value;" required>
+                    </td>
+                    <!-- ELEMENT ID Sigma01 -->
+                    <td>
+                        <input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="document.getElementById('Sigma02').innerHTML=this.value;" required>
+                    </td>
+                    <!-- ELEMENT ID Sigma02 -->
+                    <td>&epsilon;</td>
                 </tr>
                 <!-- END OF SIGMA INPUT -->
                 <!-- STATES NAME INPUT  -->
                 <tr>
-                        <td class="yellowCell">Q</td>
-                        <td><input id="State10" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('State10').innerHTML=this.value;"
-                                        required></td> <!-- INPUT ID State10 | ELEMENT ID State10 -->
-                        <td><input id="State20" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('State20').innerHTML=this.value;"
-                                        required></td> <!-- INPUT ID State20 | ELEMENT ID State20 -->
-                        <td><input id="State30" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('State30').innerHTML=this.value;"
-                                        required></td> <!-- INPUT ID State30 | ELEMENT ID State30 -->
-                        <td><input id="State40" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('State40').innerHTML=this.value;"
-                                        required></td> <!-- INPUT ID State40 | ELEMENT ID State40 -->
-                        <td><input id="State50" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('State50').innerHTML=this.value;"
-                                        required></td> <!-- INPUT ID State50 | ELEMENT ID State50 -->
+                    <td class="yellowCell">Q</td>
+                    <td>
+                        <input id="State10" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('State10').innerHTML=this.value;"
+                            required>
+                    </td> <!-- INPUT ID State10 | ELEMENT ID State10 -->
+                    <td>
+                        <input id="State20" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('State20').innerHTML=this.value;"
+                            required>
+                    </td> <!-- INPUT ID State20 | ELEMENT ID State20 -->
+                    <td>
+                        <input id="State30" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('State30').innerHTML=this.value;"
+                            required>
+                    </td> <!-- INPUT ID State30 | ELEMENT ID State30 -->
+                    <td>
+                        <input id="State40" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('State40').innerHTML=this.value;"
+                            required>
+                    </td> <!-- INPUT ID State40 | ELEMENT ID State40 -->
+                    <td>
+                        <input id="State50" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('State50').innerHTML=this.value;"
+                            required>
+                    </td> <!-- INPUT ID State50 | ELEMENT ID State50 -->
                 </tr>
                 <!-- END OF STATES NAME INPUT  -->
                 <!-- START STATES INPUT -->
                 <tr>
-                        <td class="yellowCell">START</td>
-                        <td><input id="StartState" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('StartState').innerHTML=this.value;"
-                                        id="startState" required></td> <!-- ID 10 ##DUPLICATE NO.1## -->
+                    <td class="yellowCell">START</td>
+                    <td>
+                        <input id="StartState" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('StartState').innerHTML=this.value;"
+                            required>
+                    </td> <!-- ID 10 ##DUPLICATE NO.1## -->
                 </tr>
                 <!-- END OF START STATES INPUT -->
                 <!-- FINAL STATES INPUT -->
                 <tr>
-                        <td class="yellowCell">FINAL</td>
-                        <td><input id="FinalState10" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState10').innerHTML=this.value;"
-                                        required></td> <!--  ID 50 -->
-                        <td><input id="FinalState20" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState20').innerHTML=this.value;"
-                                        required>
-                        </td>
-                        <td><input id="FinalState30" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState30').innerHTML=this.value;"
-                                        required>
-                        </td>
-                        <td><input id="FinalState40" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState40').innerHTML=this.value;"
-                                        required>
-                        </td>
-                        <td><input id="FinalState50" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState50').innerHTML=this.value;"
-                                        required>
-                        </td>
+                    <td class="yellowCell">FINAL</td>
+                    <td>
+                        <input id="FinalState10" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState10').innerHTML=this.value;"
+                            required>
+                    </td> <!--  ID 50 -->
+                    <td>
+                        <input id="FinalState20" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState20').innerHTML=this.value;"
+                            required>
+                    </td>
+                    <td>
+                        <input id="FinalState30" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState30').innerHTML=this.value;"
+                            required>
+                    </td>
+                    <td>
+                        <input id="FinalState40" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState40').innerHTML=this.value;"
+                            required>
+                    </td>
+                    <td>
+                        <input id="FinalState50" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();document.getElementById('FinalState50').innerHTML=this.value;"
+                            required>
+                    </td>
                 </tr>
                 <!-- END OF FINAL STATES INPUT -->
                 </tr>
-        </table><br>
-        <!-- END OF NFA TO REGULAR GRAMMAR INPUT SECTION -->
+            </table><br>
+            <!-- END OF NFA TO REGULAR GRAMMAR INPUT SECTION -->
+            <!-- BUTTON TO GENERATE TRANSITION TABLE OUTPUT-->
+            <input type="button" value="Generate Transition Table Output" onclick="StartFinalSymbol();" /><br><br>
+        </div>
 
-        <!-- BUTTON TO GENERATE TRANSITION TABLE OUTPUT-->
-        <input type="button" value="Generate Transition Table Output" onclick="StartFinalSymbol();" /><br><br>
-
-        <!-- TABLE FOR USER TO ENTER INPUT INTO TRANSITION TABLE -->
-        <table id="nfaTable" cellpadding="10%" display:block;>
+        <div class="transition">
+            <!-- TABLE FOR USER TO ENTER INPUT INTO TRANSITION TABLE -->
+            <table id="nfaTable" cellpadding="10%">
                 <caption><b>Transition Table</b><br>(blank for &empty;) </caption>
-                </caption>
                 <tr>
-                        <!-- FIRST ROW -->
-                        <!-- VARIABLE | VARIABLE | VARIABLE | EPSILON -->
-                        <th class="grayCell"></th>
-                        <th class="grayCell" id="Sigma00"> </th>
-                        <!-- Use ELEMENT ID from Sigma00, to display output directly -->
-                        <th class="grayCell" id="Sigma01"> </th>
-                        <th class="grayCell" id="Sigma02"> </th>
-                        <th class="grayCell" id="Sigma03"> &epsilon; </th>
-                        <th class="grayCell"> Start State Symbol </th>
-                        <th class="grayCell"> Final State Symbol</th>
+                    <!-- FIRST ROW -->
+                    <!-- VARIABLE | VARIABLE | VARIABLE | EPSILON -->
+                    <th class="grayCell"></th>
+                    <th class="grayCell" id="Sigma00"> </th>
+                    <!-- Use ELEMENT ID from Sigma00, to display output directly -->
+                    <th class="grayCell" id="Sigma01"> </th>
+                    <th class="grayCell" id="Sigma02"> </th>
+                    <th class="grayCell" id="Sigma03"> &epsilon; </th>
+                    <th class="grayCell"> Start State Symbol </th>
+                    <th class="grayCell"> Final State Symbol</th>
                 </tr>
                 <tr>
-                        <!-- SECOND ROW-->
-                        <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
-                        <th class="grayCell" id="State10Table"></th>
-                        <td><input pattern="[a-zA-Z]*" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" id="11" class="cap" required>
-                        </td> <!--  ID 11 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="12">
-                        </td>
-                        <!--  ID 12 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="13">
-                        </td>
-                        <!--  ID 13 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="14">
-                        </td>
-                        <!--  ID 14 -->
-                        <td id="startsymbol10"></td> <!-- TO DISPLAY START SYMBOL -->
-                        <td id="finalsymbol10"></td> <!-- TO DISPLAY FINAL SYMBOL -->
+                    <!-- SECOND ROW-->
+                    <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
+                    <th class="grayCell" id="State10Table"></th>
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" id="11" class="cap" required>
+                    </td> <!--  ID 11 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="12">
+                    </td>
+                    <!--  ID 12 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="13">
+                    </td>
+                    <!--  ID 13 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="14">
+                    </td>
+                    <!--  ID 14 -->
+                    <td id="startsymbol10"></td> <!-- TO DISPLAY START SYMBOL -->
+                    <td id="finalsymbol10"></td> <!-- TO DISPLAY FINAL SYMBOL -->
                 </tr>
                 <tr>
-                        <!-- THIRD ROW -->
-                        <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
-                        <th class="grayCell" id="State20Table"></th>
-                        <td><input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" id="21" class="cap" required>
-                        </td> <!--  ID 21 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="22">
-                        </td>
-                        <!--  ID 22 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="23">
-                        </td>
-                        <!--  ID 23 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="24">
-                        </td>
-                        <!--  ID 24 -->
-                        <td id="startsymbol20"></td>
-                        <td id="finalsymbol20"></td>
+                    <!-- THIRD ROW -->
+                    <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
+                    <th class="grayCell" id="State20Table"></th>
+                    <td>
+                        <input pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" id="21" class="cap" required>
+                    </td> <!--  ID 21 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="22">
+                    </td>
+                    <!--  ID 22 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="23">
+                    </td>
+                    <!--  ID 23 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="24">
+                    </td>
+                    <!--  ID 24 -->
+                    <td id="startsymbol20"></td>
+                    <td id="finalsymbol20"></td>
                 </tr>
                 <tr>
-                        <!-- FOURTH ROW -->
-                        <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
-                        <th class="grayCell" id="State30Table"></th>
-                        <td><input pattern="[a-zA-Z]*" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" id="31" class="cap" required>
-                        </td> <!--  ID 31 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="32">
-                        </td>
-                        <!--  ID 32 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="33">
-                        </td>
-                        <!--  ID 33 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="34">
-                        </td>
-                        <!--  ID 34 -->
-                        <td id="startsymbol30"></td>
-                        <td id="finalsymbol30"></td>
+                    <!-- FOURTH ROW -->
+                    <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
+                    <th class="grayCell" id="State30Table"></th>
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" id="31" class="cap" required>
+                    </td> <!--  ID 31 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="32">
+                    </td>
+                    <!--  ID 32 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="33">
+                    </td>
+                    <!--  ID 33 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="34">
+                    </td>
+                    <!--  ID 34 -->
+                    <td id="startsymbol30"></td>
+                    <td id="finalsymbol30"></td>
                 </tr>
                 <tr>
-                        <!-- FIFTH ROW -->
-                        <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
-                        <th class="grayCell" id="State40Table"></th>
-                        <td><input pattern="[a-zA-Z]*" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="41" required>
-                        </td> <!--  ID 41 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="42">
-                        </td>
-                        <!--  ID 42 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="43">
-                        </td>
-                        <!--  ID 43 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="44">
-                        </td>
-                        <!--  ID 44 -->
-                        <td id="startsymbol40"></td>
-                        <td id="finalsymbol40"></td>
+                    <!-- FIFTH ROW -->
+                    <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
+                    <th class="grayCell" id="State40Table"></th>
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="41" required>
+                    </td> <!--  ID 41 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="42">
+                    </td>
+                    <!--  ID 42 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="43">
+                    </td>
+                    <!--  ID 43 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="44">
+                    </td>
+                    <!--  ID 44 -->
+                    <td id="startsymbol40"></td>
+                    <td id="finalsymbol40"></td>
                 </tr>
                 <tr>
-                        <!-- SIXTH ROW -->
-                        <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
-                        <th class="grayCell" id="State50Table"></th>
-                        <td><input pattern="[a-zA-Z]*" type="text" name="variable" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="51" required>
-                        </td> <!--  ID 51 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="52">
-                        </td>
-                        <!--  ID 52 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="53">
-                        </td>
-                        <!--  ID 53 -->
-                        <td><input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
-                                        onchange="this.value=this.value.toUpperCase();" class="cap" id="54">
-                        </td>
-                        <!--  ID 54 -->
-                        <td id="startsymbol50"></td>
-                        <td id="finalsymbol50"></td>
+                    <!-- SIXTH ROW -->
+                    <!-- STATE | TRANSITION | TRANSITION | TRANSITION -->
+                    <th class="grayCell" id="State50Table"></th>
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="variable" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="51" required>
+                    </td> <!--  ID 51 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="a" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="52">
+                    </td>
+                    <!--  ID 52 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="53">
+                    </td>
+                    <!--  ID 53 -->
+                    <td>
+                        <input pattern="[a-zA-Z]*" type="text" name="b" style="width: 15px;"
+                            onchange="this.value=this.value.toUpperCase();" class="cap" id="54">
+                    </td>
+                    <!--  ID 54 -->
+                    <td id="startsymbol50"></td>
+                    <td id="finalsymbol50"></td>
                 </tr>
-        </table>
+            </table><br />
+            <input type="button" value="convert nfa into rg" onclick="toRg('nfaTable')" />
+        </div>
         <!-- END OF TABLE FOR USER TO ENTER INPUT INTO TRANSITION TABLE-->
 
+        <!-- CHECK STRINGS -->
+        <div class="checkStrings">
+            <table id=" checkTable">
+                <caption><b>Check Strings</b></caption>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s1"></td>
+                    <td id="check1" width="30px"></td>
+                </tr>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s2"></td>
+                    <td id="check2"></td>
+                </tr>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s3"></td>
+                    <td id="check3"></td>
+                </tr>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s4"></td>
+                    <td id="check4"></td>
+                </tr>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s5"></td>
+                    <td id="check5"></td>
+                </tr>
+                <!-- <tr><td>&epsilon;</td>
+                    <td id="s11"></td></tr> -->
+            </table><br />
+            <input type="button" value="check" onclick="checkStrings()" />
+        </div>
+
         <!-- PLEASE CODE "CHECK STRINGS (INPUT) PART OVER HERE"-->
-
-
-
-
-
-
 
         <!-- END OF CHECK STRINGS(INPUT) PART -->
 
         <!-- AMIR MASUKKAN NFA TO RG CONVERTER KAT SINI -->
-        <input type="button" value="convert nfa into rg" onclick="toRg('nfaTable')" />
-        <h1 id="infoRG" style="border: 2px solid black;"></h1>
+        <div class="regulargrammar">
+            <!-- <p>Regular Grammar:</p> -->
+            <h1 id="infoRG"></h1>
+        </div>
+        <p id="test"></p>
+    </div>
+    <!-- =====================================================-->
+    <!-- ============== END OF NFA TO RG PAGE HTML ===========-->
+    <!-- =====================================================-->
+
+    <!-- =====================================================-->
+    <!-- ================= HELP + DOC PAGE HTML ==============-->
+    <!-- =====================================================-->
+    <div id="Help" class="tabContent">
+        <h3>Help and Doc</h3>
+
+        <iframe src="Lecture 04_Regular_Grammars.pdf" width="100%" height="600px">
+
+        </iframe>
+    </div>
+    <!-- =====================================================-->
+    <!-- ============= END OF HELP + DOC PAGE HTML ===========-->
+    <!-- =====================================================-->
+
 </body>
 
 </html>
