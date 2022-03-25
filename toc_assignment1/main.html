@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOC Assignment</title>
     <script src="main.js"></script>
+    <script src="NfanRg.js"></script> 
     <script src="RgnNfa.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -80,17 +81,17 @@
     <!-- =============== RG TO NFA PAGE PAGE HTML ============-->
     <!-- =====================================================-->
     <div id="RgNfa" class="tabContent">
+        <div class="input">
         <!-- REGULAR GRAMMAR TO NFA INPUT SECTION -->
-        <h3>RG to NFA</h3>
-
         <!-- INPUT FROM USER-->
         <table id="table1" cellspacing="10px" cellpadding="10%">
+            <caption><b>Regular Grammar (input)</b><br>(First variable is the Start State) </caption>
             <tr>
-                <th>Variable</th>
-                <th>a</th>
-                <th>b</th>
-                <th>c</th>
-                <th> &epsilon; </th>
+                <th class="yellowCell">Variable</th>
+                <th class="yellowCell">a</th>
+                <th class="yellowCell">b</th>
+                <th class="yellowCell">c</th>
+                <th class="yellowCell"> &epsilon; </th>
             </tr>
             <tr>
                 <!--Variable 1-->
@@ -235,7 +236,7 @@
         </table>
         <br>
         <input type="button" value="Submit" onclick="submit()" />
-        <br><br>
+        </div>
 
         <!-- STATEMENT DIV -->
         <div class="statements">
@@ -249,7 +250,9 @@
                     id="V4epsDisp1"></var>,<var id="V5epsDisp1"></var>}</p>
         </div>
         <!-- END OF STATEMENT DIV -->
-        <br><br>
+
+        <!-- TRANSITION DIV-->
+        <div class="transition-table1">
         <!-- TRANSITION TABLE WITH EPSILON-->
         <table id="table2" cellspacing="10px" cellpadding="10%">
             <caption><b>Transition Table With &epsilon;</b><br> </caption>
@@ -310,6 +313,9 @@
             </tr>
         </table>
         <!-- END OF TRANSITION TABLE WITH EPSILON-->
+        </div>
+        <!-- END OF TRANSITION DIV-->
+
     </div>
     <!-- =====================================================-->
     <!-- ============== END OF RG TO NFA PAGE HTML ===========-->
@@ -380,9 +386,9 @@
                 <tr>
                     <td class="yellowCell">START</td>
                     <td>
-                        <input id="startState" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
+                        <input id="StartState" pattern="[a-zA-Z]" type="text" name="variable" style="width: 15px;"
                             onchange="this.value=this.value.toUpperCase();document.getElementById('StartState').innerHTML=this.value;"
-                            id="startState" required>
+                            required>
                     </td> <!-- ID 10 ##DUPLICATE NO.1## -->
                 </tr>
                 <!-- END OF START STATES INPUT -->

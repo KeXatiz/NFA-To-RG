@@ -143,6 +143,16 @@
     margin: 30px;
   }
 
+  .transition-table1{
+    display: block;
+    margin: 30px;
+  }
+
+  .statements{
+    display:inline-block;
+    margin: 30px;
+  }
+
   .checkStrings{
     display: inline-block;
     margin: 30px;
