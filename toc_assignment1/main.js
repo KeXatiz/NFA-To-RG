@@ -16,14 +16,14 @@ function openTabs(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-function changeText(value) {
-    var display = document.getElementById("display");
-    var text = "";
+// function changeText(value) {
+//     var display = document.getElementById("display");
+//     var text = "";
 
-    if (value == 1) text += "Amir (Leader)";
-    if (value == 2) text += "Ammar";
-    if (value == 3) text += "Fekry";
-    if (value == 4) text += "Yi Xuin";
+//     if (value == 1) text += "Amir (Leader)";
+//     if (value == 2) text += "Ammar";
+//     if (value == 3) text += "Fekry";
+//     if (value == 4) text += "Yi Xuin";
 
-    display.innerHTML = text;
-}
+//     display.innerHTML = text;
+// }

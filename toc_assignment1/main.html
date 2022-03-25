@@ -241,8 +241,39 @@
             </tr>
         </table>
         <br>
-        <input type="button" value="Convert RG to NFA" onclick="submit()" />
+        <input type="button" value="Convert RG to NFA" onclick="submit()"/>
         </div>
+
+        <!-- CHECK STRINGS -->
+        <div class="checkStrings">
+            <table id=" checkTable">
+                <caption><b>Check Strings</b></caption>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="ss1"></td>
+                    <td id="check1" width="30px"></td>
+                </tr>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="ss2"></td>
+                    <td id="check2"></td>
+                </tr>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="ss3"></td>
+                    <td id="check3"></td>
+                </tr>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="ss4"></td>
+                    <td id="check4"></td>
+                </tr>
+                <tr>
+                    <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="ss5"></td>
+                    <td id="check5"></td>
+                </tr>
+                <!-- <tr><td>&epsilon;</td>
+                    <td id="s11"></td></tr> -->
+            </table><br />
+            <input type="button" value="check" onclick="checkStrings()" />
+        </div>
+        <!--  END OF CHECK STRINGS PART -->
 
         <!-- STATEMENT DIV -->
         <div class="statements">
@@ -640,46 +671,42 @@
         </div>
         <!-- END OF TABLE FOR USER TO ENTER INPUT INTO TRANSITION TABLE-->
 
-        <!-- CHECK STRINGS -->
+        <!-- CHECK STRINGS 2-->
         <div class="checkStrings">
             <table id=" checkTable">
                 <caption><b>Check Strings</b></caption>
                 <tr>
                     <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s1"></td>
-                    <td id="check1" width="30px"></td>
+                    <td id="check6" width="30px"></td>
                 </tr>
                 <tr>
                     <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s2"></td>
-                    <td id="check2"></td>
+                    <td id="check7"></td>
                 </tr>
                 <tr>
                     <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s3"></td>
-                    <td id="check3"></td>
+                    <td id="check8"></td>
                 </tr>
                 <tr>
                     <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s4"></td>
-                    <td id="check4"></td>
+                    <td id="check9"></td>
                 </tr>
                 <tr>
                     <td><input pattern="[a-zA-Z]*" type="text" name="a" style="width: 80px;" id="s5"></td>
-                    <td id="check5"></td>
+                    <td id="check0"></td>
                 </tr>
                 <!-- <tr><td>&epsilon;</td>
                     <td id="s11"></td></tr> -->
             </table><br />
-            <input type="button" value="check" onclick="checkStrings()" />
+            <input type="button" value="check" onclick="checkStrings2()" />
         </div>
+        <!--  END OF CHECK STRINGS 2 -->
 
-        <!-- PLEASE CODE "CHECK STRINGS (INPUT) PART OVER HERE"-->
-
-        <!-- END OF CHECK STRINGS(INPUT) PART -->
-
-        <!-- AMIR MASUKKAN NFA TO RG CONVERTER KAT SINI -->
+        <!--  NFA TO RG CONVERTER -->
         <div class="regulargrammar">
-            <!-- <p>Regular Grammar:</p> -->
             <h1 id="infoRG"></h1>
         </div>
-        <p id="test"></p>
+        <!--  END OF NFA TO RG CONVERTER -->
     </div>
     <!-- =====================================================-->
     <!-- ============== END OF NFA TO RG PAGE HTML ===========-->
